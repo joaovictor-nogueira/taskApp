@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ListaController;
+use App\Http\Controllers\TarefaController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -10,9 +12,11 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('listas',ListaController::class);
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
+    Route::resource('tarefas',TarefaController::class);
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+   
 });
 
 require __DIR__.'/settings.php';

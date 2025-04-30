@@ -43,7 +43,8 @@ class ListaController extends Controller
         ]);
 
         Lista::create([
-            ...$validated,
+            'titulo' => $validated['titulo'],
+            'descricao' => $validated['descricao'],
             'user_id' => auth()->id()
         ]);
         return redirect()->route('listas.index')->with('success', 'Lista criada com sucesso!');
@@ -75,7 +76,10 @@ class ListaController extends Controller
             'descricao' => 'nullable|string',
         ]);
 
-        $lista->update($validated);
+        $lista->update([
+            'titulo' => $validated['titulo'],
+            'descricao' => $validated['descricao'],
+        ]);
         return redirect()->route('listas.index')->with('success', 'Lista atualizada com sucesso!');
     }
 

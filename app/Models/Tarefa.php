@@ -9,7 +9,7 @@ class Tarefa extends Model
 {
     protected $table = 'tarefas';
 
-    protected $fillable = [ 'titulo', 'descricao','is_completed','due_date','list_id'];
+    protected $fillable = [ 'titulo', 'descricao','is_completed','due_date','lista_id'];
 
     public function lista(): BelongsTo
     {
